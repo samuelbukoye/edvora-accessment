@@ -18,3 +18,5 @@ export interface UserType {
   name: string;
   url: string;
 }
+
+export type setStringStateType = React.Dispatch<React.SetStateAction<string>>;

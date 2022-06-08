@@ -1,10 +1,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import Nav from '../components/Nav';
 import RideCard from '../components/RideCard';
-import sortArray from '../utils/sortArray';
+import filterByDate from '../utils/filters';
+import sortByAndAddDistance from '../utils/sortByAndAddDistance';
 import { RideType, RideTypeWithDistance, UserType } from '../utils/types';
 
 const rides: RideType[] = [
@@ -506,12 +508,28 @@ const userInfo: UserType = {
   url: 'https://picsum.photos/200',
 };
 
-const sortedRides: RideTypeWithDistance[] = sortArray({
-  rides,
-  station_code: userInfo.station_code,
-});
-
 const Home: NextPage = () => {
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
+
+  const sortedRides: RideTypeWithDistance[] = sortByAndAddDistance({
+    rides,
+    station_code: userInfo.station_code,
+  });
+
+  const filteredRidesAsc: RideType[] = filterByDate({
+    rides,
+    filter: 'ASC',
+    state,
+    city,
+  });
+
+  const filteredRidesDesc: RideType[] = filterByDate({
+    rides,
+    filter: 'DESC',
+    state,
+    city,
+  });
   return (
     <>
       <Head>
@@ -520,7 +538,14 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <Nav userInfo={userInfo} />
+        <Nav
+          upcomingRidesNo={filteredRidesAsc.length}
+          pastRidesNo={filteredRidesDesc.length}
+          state={state}
+          setState={setState}
+          city={city}
+          setCity={setCity}
+        />
         <RidesWrapper>
           {sortedRides.map((ride) => (
             <RideCard rideInfo={ride} key={ride.id} />

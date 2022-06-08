@@ -14,7 +14,6 @@ const calcDistance = ({
       return acc;
     }
   }, 0);
-  console.log({ codeArray, station_code, leastDifference });
 
   return leastDifference;
 };

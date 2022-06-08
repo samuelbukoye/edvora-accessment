@@ -1,7 +1,7 @@
 import calcDistance from './calcDistance';
 import { RideType, RideTypeWithDistance } from './types';
 
-const sortArray = ({
+const sortByAndAddDistance = ({
   rides,
   station_code,
 }: {
@@ -21,4 +21,4 @@ const sortArray = ({
   return newRides;
 };
 
-export default sortArray;
+export default sortByAndAddDistance;

@@ -1,15 +1,25 @@
 import styled from 'styled-components';
-import { UserType } from '../utils/types';
+import { setStringStateType } from '../utils/types';
 
-const Nav = ({ userInfo }: { userInfo: UserType }) => {
+const Nav = ({
+  upcomingRidesNo,
+  pastRidesNo,
+}: {
+  upcomingRidesNo: number;
+  pastRidesNo: number;
+  state: string;
+  setState: setStringStateType;
+  city: string;
+  setCity: setStringStateType;
+}) => {
   const FilterIconUrl = '/img/filter-icon.png';
 
   return (
     <Wrapper>
       <NavItems>
         <NavItem active={true}>Nearest rides</NavItem>
-        <NavItem active={false}>Upcoming rides (4)</NavItem>
-        <NavItem active={false}>Past rides (2)</NavItem>
+        <NavItem active={false}>Upcoming rides ({upcomingRidesNo})</NavItem>
+        <NavItem active={false}>Past rides ({pastRidesNo})</NavItem>
       </NavItems>
       <FilterDiv>
         <FilterIcon src={FilterIconUrl} alt="filter-icon" />
