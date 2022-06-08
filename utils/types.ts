@@ -9,6 +9,10 @@ export interface RideType {
   city: string;
 }
 
+export interface RideTypeWithDistance extends RideType {
+  distance: number;
+}
+
 export interface UserType {
   station_code: number;
   name: string;

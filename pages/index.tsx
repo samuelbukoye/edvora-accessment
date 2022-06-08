@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import Layout from '../components/Layout';
 import Nav from '../components/Nav';
 import RideCard from '../components/RideCard';
-import { RideType, UserType } from '../utils/types';
+import sortArray from '../utils/sortArray';
+import { RideType, RideTypeWithDistance, UserType } from '../utils/types';
 
 const rides: RideType[] = [
   {
@@ -505,6 +506,11 @@ const userInfo: UserType = {
   url: 'https://picsum.photos/200',
 };
 
+const sortedRides: RideTypeWithDistance[] = sortArray({
+  rides,
+  station_code: userInfo.station_code,
+});
+
 const Home: NextPage = () => {
   return (
     <>
@@ -516,7 +522,7 @@ const Home: NextPage = () => {
       <Layout>
         <Nav userInfo={userInfo} />
         <RidesWrapper>
-          {rides.map((ride) => (
+          {sortedRides.map((ride) => (
             <RideCard rideInfo={ride} key={ride.id} />
           ))}
         </RidesWrapper>

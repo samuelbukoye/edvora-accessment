@@ -1,12 +1,7 @@
 import styled from 'styled-components';
-import { RideType } from '../utils/types';
+import { RideTypeWithDistance } from '../utils/types';
 
-const RideCard = ({ rideInfo }: { rideInfo: RideType }) => {
-  //   const [rideDistance, setRideDistance] = useState(0);
-  const rideDistance = 0;
-
-  //   const stationPath = rideInfo.station_path;
-
+const RideCard = ({ rideInfo }: { rideInfo: RideTypeWithDistance }) => {
   return (
     <Wrapper>
       <MapImg src={rideInfo.map_url} alt="img of ride location" />
@@ -21,7 +16,9 @@ const RideCard = ({ rideInfo }: { rideInfo: RideType }) => {
         </RideInfoItem>
         <RideInfoItem>
           <RideInfoItemKey>station_path</RideInfoItemKey>:
-          <RideInfoItemValue>{rideInfo.station_path}</RideInfoItemValue>
+          <RideInfoItemValue>
+            {JSON.stringify(rideInfo.station_path).replace(/,/g, ', ')}
+          </RideInfoItemValue>
         </RideInfoItem>
         <RideInfoItem>
           <RideInfoItemKey>Date</RideInfoItemKey>:
@@ -29,7 +26,7 @@ const RideCard = ({ rideInfo }: { rideInfo: RideType }) => {
         </RideInfoItem>
         <RideInfoItem>
           <RideInfoItemKey>Distance</RideInfoItemKey>:
-          <RideInfoItemValue>{rideDistance}</RideInfoItemValue>
+          <RideInfoItemValue>{rideInfo.distance}</RideInfoItemValue>
         </RideInfoItem>
       </RideInfoItems>
 
@@ -71,7 +68,7 @@ const RideInfoItem = styled.li`
 
   display: flex;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.4rem;
 `;
 
 const RideInfoItemKey = styled.span`
