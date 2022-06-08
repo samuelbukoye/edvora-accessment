@@ -1,12 +1,13 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import Nav from '../components/Nav';
 import RideCard from '../components/RideCard';
-import filterByDate from '../utils/filters';
-import sortByAndAddDistance from '../utils/sortByAndAddDistance';
+import filterByDate from '../utils/filterByDate';
+import getStateAndCity from '../utils/getStateAndCity';
+import sortByAndAddDistanceAndFilter from '../utils/sortByAndAddDistanceAndFilter';
 import { RideType, RideTypeWithDistance, UserType } from '../utils/types';
 
 const rides: RideType[] = [
@@ -511,25 +512,33 @@ const userInfo: UserType = {
 const Home: NextPage = () => {
   const [state, setState] = useState('');
   const [city, setCity] = useState('');
+  const [states, setStates] = useState<string[]>([]);
+  const [cities, setCities] = useState<string[]>([]);
 
-  const sortedRides: RideTypeWithDistance[] = sortByAndAddDistance({
+  const sortedRides: RideTypeWithDistance[] = sortByAndAddDistanceAndFilter({
     rides,
     station_code: userInfo.station_code,
+    state,
+    city,
   });
 
   const filteredRidesAsc: RideType[] = filterByDate({
-    rides,
+    rides: sortedRides,
     filter: 'ASC',
-    state,
-    city,
   });
 
   const filteredRidesDesc: RideType[] = filterByDate({
-    rides,
+    rides: sortedRides,
     filter: 'DESC',
-    state,
-    city,
   });
+
+  useEffect(() => {
+    const { states, cities }: { states: string[]; cities: string[] } =
+      getStateAndCity({ rides, state, city });
+    setStates(states);
+    setCities(cities);
+  }, [city, state]);
+
   return (
     <>
       <Head>
@@ -545,6 +554,8 @@ const Home: NextPage = () => {
           setState={setState}
           city={city}
           setCity={setCity}
+          states={states}
+          cities={cities}
         />
         <RidesWrapper>
           {sortedRides.map((ride) => (

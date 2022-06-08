@@ -1,9 +1,16 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { setStringStateType } from '../utils/types';
 
 const Nav = ({
   upcomingRidesNo,
   pastRidesNo,
+  state,
+  setState,
+  city,
+  setCity,
+  cities,
+  states,
 }: {
   upcomingRidesNo: number;
   pastRidesNo: number;
@@ -11,8 +18,23 @@ const Nav = ({
   setState: setStringStateType;
   city: string;
   setCity: setStringStateType;
+  cities: string[];
+  states: string[];
 }) => {
   const FilterIconUrl = '/img/filter-icon.png';
+  const [DisplayStates, setDisplayStates] = useState(false);
+  const [DisplayCities, setDisplayCities] = useState(false);
+
+  const handleStateChange = (value: string) => {
+    setState(value);
+    setCity('');
+    setDisplayStates(false);
+  };
+
+  const handleCityChange = (value: string) => {
+    setCity(value);
+    setDisplayCities(false);
+  };
 
   return (
     <Wrapper>
@@ -30,13 +52,52 @@ const Nav = ({
             <FilterHeaderText>Filters</FilterHeaderText>
           </FilterHeader>
           <FilterBody>
-            <FilterBodyCard>
-              <FilterBodyCardText>State</FilterBodyCardText>
-              <FilterBodyCardArrow></FilterBodyCardArrow>
+            <FilterBodyCard onClick={() => setDisplayStates(!DisplayStates)}>
+              <FilterBodyCardText>{state ? state : 'State'}</FilterBodyCardText>
+              <FilterBodyCardArrow active={DisplayStates}></FilterBodyCardArrow>
+              {DisplayStates && (
+                <SelectDropdown
+                  onClick={(e) => e.stopPropagation()}
+                  style={{ zIndex: '20' }}
+                >
+                  <DropdownCard onClick={() => handleStateChange('')}>
+                    <DropdownValue>State</DropdownValue>
+                  </DropdownCard>
+
+                  {states.length > 0 &&
+                    states.map((state) => (
+                      <DropdownCard
+                        key={state}
+                        onClick={() => handleStateChange(state)}
+                      >
+                        <DropdownValue>{state}</DropdownValue>
+                      </DropdownCard>
+                    ))}
+                </SelectDropdown>
+              )}
             </FilterBodyCard>
-            <FilterBodyCard>
-              <FilterBodyCardText>City</FilterBodyCardText>
-              <FilterBodyCardArrow></FilterBodyCardArrow>
+            <FilterBodyCard onClick={() => setDisplayCities(!DisplayCities)}>
+              <FilterBodyCardText>{city ? city : 'City'}</FilterBodyCardText>
+              <FilterBodyCardArrow active={DisplayCities}></FilterBodyCardArrow>
+              {DisplayCities && (
+                <SelectDropdown
+                  onClick={(e) => e.stopPropagation()}
+                  style={{ zIndex: '10' }}
+                >
+                  <DropdownCard onClick={() => handleCityChange('')}>
+                    <DropdownValue>City</DropdownValue>
+                  </DropdownCard>
+                  {cities.length > 0 &&
+                    cities.map((city) => (
+                      <DropdownCard
+                        key={city}
+                        onClick={() => handleCityChange(city)}
+                      >
+                        <DropdownValue>{city}</DropdownValue>
+                      </DropdownCard>
+                    ))}
+                </SelectDropdown>
+              )}
             </FilterBodyCard>
           </FilterBody>
         </FilterDropdown>
@@ -135,12 +196,13 @@ const FilterBody = styled.div`
 `;
 
 const FilterBodyCard = styled.div`
+  position: relative;
   width: 16.845rem;
   padding: 0.8rem 1.2rem;
   background: #232323;
   border-radius: 0.5rem;
 
-  font-size: 1.7em;
+  font-size: 1.7rem;
   font-weight: 400;
   line-height: 2rem;
 
@@ -150,7 +212,8 @@ const FilterBodyCard = styled.div`
 `;
 
 const FilterBodyCardText = styled.p``;
-const FilterBodyCardArrow = styled.div`
+
+const FilterBodyCardArrow = styled.div<{ active: boolean }>`
   flex-basis: 1.219rem;
   flex-grow: 0;
   width: 0;
@@ -158,4 +221,41 @@ const FilterBodyCardArrow = styled.div`
   border: calc(1.219rem / 2) solid transparent;
   border-bottom: 0;
   border-top: 1.219rem solid #a5a5a5;
+  transition: all 0.5s;
+
+  transform: rotate(${(prop) => (prop.active ? '180deg' : '0deg')});
+`;
+
+const SelectDropdown = styled.div`
+  position: absolute;
+  /* width: 100%; */
+  /* height: 10rem; */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* z-index: 10; */
+  background: #232323;
+
+  transform: translateY(100%);
+  border: 1px solid #171717;
+`;
+
+const DropdownCard = styled.div`
+  position: relative;
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  background: #232323;
+  border-top: 1px solid #171717;
+
+  font-size: 1.7rem;
+  font-weight: 400;
+  line-height: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const DropdownValue = styled.p`
+  text-align: center;
 `;
