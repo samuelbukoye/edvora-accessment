@@ -14,6 +14,22 @@ const Nav = ({ userInfo }: { userInfo: UserType }) => {
       <FilterDiv>
         <FilterIcon src={FilterIconUrl} alt="filter-icon" />
         <FilterText>Filters</FilterText>
+
+        <FilterDropdown>
+          <FilterHeader>
+            <FilterHeaderText>Filters</FilterHeaderText>
+          </FilterHeader>
+          <FilterBody>
+            <FilterBodyCard>
+              <FilterBodyCardText>State</FilterBodyCardText>
+              <FilterBodyCardArrow></FilterBodyCardArrow>
+            </FilterBodyCard>
+            <FilterBodyCard>
+              <FilterBodyCardText>City</FilterBodyCardText>
+              <FilterBodyCardArrow></FilterBodyCardArrow>
+            </FilterBodyCard>
+          </FilterBody>
+        </FilterDropdown>
       </FilterDiv>
     </Wrapper>
   );
@@ -56,6 +72,8 @@ const NavItem = styled.li<{ active: boolean }>`
 `;
 
 const FilterDiv = styled.div`
+  position: relative;
+
   display: flex;
   align-items: center;
   gap: 0.8rem;
@@ -73,4 +91,61 @@ const FilterText = styled.p`
   font-size: 1.6em;
   font-weight: 500;
   line-height: 1.9em;
+`;
+
+const FilterDropdown = styled.div`
+  padding: 2.3rem 3rem;
+  background: #131313;
+  border-radius: 1.5rem;
+
+  position: absolute;
+  top: 90%;
+  right: 50%;
+`;
+
+const FilterHeader = styled.div`
+  padding-bottom: 1.2rem;
+  padding-left: 0.5rem;
+  border-bottom: 1px solid #cbcbcb;
+  width: 95%;
+  margin: 0 auto;
+`;
+
+const FilterHeaderText = styled.h3`
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 2.4rem;
+  color: #a5a5a5;
+`;
+
+const FilterBody = styled.div`
+  padding-top: 2rem;
+  display: grid;
+  grid-gap: 1.25rem;
+`;
+
+const FilterBodyCard = styled.div`
+  width: 16.845rem;
+  padding: 0.8rem 1.2rem;
+  background: #232323;
+  border-radius: 0.5rem;
+
+  font-size: 1.7em;
+  font-weight: 400;
+  line-height: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const FilterBodyCardText = styled.p``;
+const FilterBodyCardArrow = styled.div`
+  flex-basis: 1.219rem;
+  flex-grow: 0;
+  width: 0;
+  height: 0;
+  border: calc(1.219rem / 2) solid transparent;
+  border-bottom: 0;
+  border-top: 1.219rem solid #a5a5a5;
 `;
