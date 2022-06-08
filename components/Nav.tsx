@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { UserType } from '../utils/types';
 
-const Nav = () => {
+const Nav = ({ userInfo }: { userInfo: UserType }) => {
   const FilterIconUrl = '/img/filter-icon.png';
 
   return (
