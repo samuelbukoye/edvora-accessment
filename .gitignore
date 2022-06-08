@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+rides.json
+user.json
 
 # testing
 /coverage
