@@ -1,0 +1,5 @@
+import { viewportWidth } from './dimensions';
+
+export default function pxTovw(px) {
+  return (100 * px) / viewportWidth + 'vw';
+}
