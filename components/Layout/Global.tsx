@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
 :root {
   --color-primary: #ffffff;
   --color-secondary:#cfcfcf;
+  --color-tertiary:#d0cbcb;
 
 
   --bg-primary:#292929;
@@ -48,6 +49,10 @@ img{
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+ul{
+  list-style-type:none
 }
 `;
 
