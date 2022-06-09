@@ -31,7 +31,7 @@ const Nav = ({
   states: string[];
 }) => {
   const FilterIconUrl = '/img/filter-icon.png';
-  const [DisplayFilter, setDisplayFilter] = useState(false);
+  const [displayFilter, setDisplayFilter] = useState(false);
   const [DisplayStates, setDisplayStates] = useState(false);
   const [DisplayCities, setDisplayCities] = useState(false);
 
@@ -48,6 +48,10 @@ const Nav = ({
 
   const handleRouteChange = (value: RouteType) => {
     if (route !== value) setRoute(value);
+  };
+
+  const handleDisplayFilter = (value: boolean) => {
+    setDisplayFilter(value);
   };
 
   return (
@@ -73,13 +77,13 @@ const Nav = ({
         </NavItem>
       </NavItems>
       <FilterDiv
-        onMouseOver={() => setDisplayFilter(true)}
-        onMouseOut={() => setDisplayFilter(false)}
+        onMouseOver={() => handleDisplayFilter(true)}
+        onMouseOut={() => handleDisplayFilter(false)}
       >
         <FilterIcon src={FilterIconUrl} alt="filter-icon" />
         <FilterText>Filters</FilterText>
 
-        {DisplayFilter && (
+        {displayFilter && (
           <FilterDropdown>
             <FilterHeader>
               <FilterHeaderText>Filters</FilterHeaderText>
@@ -374,19 +378,52 @@ const FilterBodyCardArrow = styled.div<{ active: boolean }>`
 
 const SelectDropdown = styled.div`
   position: absolute;
-  /* width: 100%; */
-  /* height: 10)}; */
   left: 0;
   right: 0;
   bottom: 0;
-  /* z-index: 10; */
   background: #232323;
+  max-height: 50vh;
+  overflow-y: scroll;
 
   transform: translateY(100%);
   border: ${pxTovw(1)} solid #171717;
 
+  &::-webkit-scrollbar-track {
+    border: ${pxTovw(1)} solid #00000055;
+    padding: ${pxTovw(2)} 0;
+    background-color: #404040;
+  }
+
+  &::-webkit-scrollbar {
+    width: ${pxTovw(15)};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: ${pxTovw(10)};
+    box-shadow: inset 0 0 ${pxTovw(6)} rgba(0, 0, 0, 0.3);
+    background-color: #737272;
+    border: 1px solid #00000055;
+  }
+
   @media screen and (max-width: 600px) {
     border: ${pxTovw(1, true)} solid #171717;
+
+    &::-webkit-scrollbar-track {
+      border: ${pxTovw(1)} solid #00000055;
+      padding: ${pxTovw(2)} 0;
+      background-color: #404040;
+    }
+
+    &::-webkit-scrollbar {
+      width: ${pxTovw(15)};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: ${pxTovw(10)};
+      box-shadow: inset 0 0 ${pxTovw(6)} rgba(0, 0, 0, 0.3);
+      background-color: #737272;
+      border: 1px solid #00000055;
+    }
   }
 `;
 
@@ -408,6 +445,11 @@ const DropdownCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.5s;
+
+  &:hover {
+    background: #383838;
+  }
 
   @media screen and (max-width: 600px) {
     padding: ${pxTovw(8, true)} ${pxTovw(12, true)};
