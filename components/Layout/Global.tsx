@@ -26,7 +26,8 @@ const GlobalStyle = createGlobalStyle`
 html {
   box-sizing: border-box;
   /* this defines what 1 rem is */
-  font-size: 62.5%; /* 1rem = 10px; 10px/16px = 62.5% */
+  /* font-size: 62.5%;  */
+  /* 1rem = 10px; 10px/16px = 62.5% */
 }
 
 body {

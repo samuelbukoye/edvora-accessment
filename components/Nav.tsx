@@ -85,6 +85,20 @@ const Nav = ({
               <FilterHeaderText>Filters</FilterHeaderText>
             </FilterHeader>
             <FilterBody>
+              <HiddenSelectElement
+                name="States"
+                value={state}
+                onChange={(e) => handleStateChange(e.target.value)}
+              >
+                <option value="">State</option>
+
+                {states.length > 0 &&
+                  states.map((state) => (
+                    <option key={state} value={state}>
+                      {state}
+                    </option>
+                  ))}
+              </HiddenSelectElement>
               <FilterBodyCard onClick={() => setDisplayStates(!DisplayStates)}>
                 <FilterBodyCardText>
                   {state ? state : 'State'}
@@ -113,6 +127,20 @@ const Nav = ({
                   </SelectDropdown>
                 )}
               </FilterBodyCard>
+              <HiddenSelectElement
+                name="Cities"
+                value={state}
+                onChange={(e) => handleCityChange(e.target.value)}
+              >
+                <option value="">City</option>
+
+                {cities.length > 0 &&
+                  cities.map((city) => (
+                    <option key={city} value={city}>
+                      {city}
+                    </option>
+                  ))}
+              </HiddenSelectElement>
               <FilterBodyCard onClick={() => setDisplayCities(!DisplayCities)}>
                 <FilterBodyCardText>{city ? city : 'City'}</FilterBodyCardText>
                 <FilterBodyCardArrow
@@ -246,16 +274,16 @@ const FilterBodyCard = styled.div`
   border-radius: ${pxTovw(5)};
   cursor: pointer;
 
-  font-size: ${pxTovw(17)};
-  font-weight: 400;
-  line-height: ${pxTovw(20)};
-
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-const FilterBodyCardText = styled.p``;
+const FilterBodyCardText = styled.p`
+  font-size: ${pxTovw(17)};
+  font-weight: 400;
+  line-height: ${pxTovw(20)};
+`;
 
 const FilterBodyCardArrow = styled.div<{ active: boolean }>`
   flex-basis: ${pxTovw(12.19)};
@@ -284,6 +312,14 @@ const SelectDropdown = styled.div`
   border: ${pxTovw(1)} solid #171717;
 `;
 
+const HiddenSelectElement = styled.select`
+  position: absolute;
+  z-index: -1;
+  width: 0.1px;
+  height: 0.1px;
+  top: -99999999999999999999999999px;
+`;
+
 const DropdownCard = styled.div`
   position: relative;
   width: 100%;
@@ -291,15 +327,14 @@ const DropdownCard = styled.div`
   background: #232323;
   border-top: ${pxTovw(1)} solid #171717;
 
-  font-size: ${pxTovw(17)};
-  font-weight: 400;
-  line-height: ${pxTovw(20)};
-
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 const DropdownValue = styled.p`
+  font-size: ${pxTovw(17)};
+  font-weight: 400;
+  line-height: ${pxTovw(20)};
   text-align: center;
 `;
