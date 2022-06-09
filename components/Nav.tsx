@@ -1,8 +1,14 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { setStringStateType } from '../utils/types';
+import {
+  RouteType,
+  SetRouteStateType,
+  SetStringStateType,
+} from '../utils/types';
 
 const Nav = ({
+  route,
+  setRoute,
   upcomingRidesNo,
   pastRidesNo,
   state,
@@ -12,12 +18,14 @@ const Nav = ({
   cities,
   states,
 }: {
+  route: RouteType;
+  setRoute: SetRouteStateType;
   upcomingRidesNo: number;
   pastRidesNo: number;
   state: string;
-  setState: setStringStateType;
+  setState: SetStringStateType;
   city: string;
-  setCity: setStringStateType;
+  setCity: SetStringStateType;
   cities: string[];
   states: string[];
 }) => {
@@ -37,12 +45,31 @@ const Nav = ({
     setDisplayCities(false);
   };
 
+  const handleRouteChange = (value: RouteType) => {
+    if (route !== value) setRoute(value);
+  };
+
   return (
     <Wrapper>
       <NavItems>
-        <NavItem active={true}>Nearest rides</NavItem>
-        <NavItem active={false}>Upcoming rides ({upcomingRidesNo})</NavItem>
-        <NavItem active={false}>Past rides ({pastRidesNo})</NavItem>
+        <NavItem
+          active={route === 'NEAREST'}
+          onClick={() => handleRouteChange('NEAREST')}
+        >
+          Nearest rides
+        </NavItem>
+        <NavItem
+          active={route === 'UPCOMING'}
+          onClick={() => handleRouteChange('UPCOMING')}
+        >
+          Upcoming rides ({upcomingRidesNo})
+        </NavItem>
+        <NavItem
+          active={route === 'PAST'}
+          onClick={() => handleRouteChange('PAST')}
+        >
+          Past rides ({pastRidesNo})
+        </NavItem>
       </NavItems>
       <FilterDiv
         onMouseOver={() => setDisplayFilter(true)}

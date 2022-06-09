@@ -8,7 +8,12 @@ import RideCard from '../components/RideCard';
 import filterByDate from '../utils/filterByDate';
 import getStateAndCity from '../utils/getStateAndCity';
 import sortByAndAddDistanceAndFilter from '../utils/sortByAndAddDistanceAndFilter';
-import { RideType, RideTypeWithDistance, UserType } from '../utils/types';
+import {
+  RideType,
+  RideTypeWithDistance,
+  RouteType,
+  UserType,
+} from '../utils/types';
 
 const rides: RideType[] = [
   {
@@ -510,27 +515,36 @@ const userInfo: UserType = {
 };
 
 const Home: NextPage = () => {
+  const [route, setRoute] = useState<RouteType>('NEAREST');
   const [state, setState] = useState('');
   const [city, setCity] = useState('');
   const [states, setStates] = useState<string[]>([]);
   const [cities, setCities] = useState<string[]>([]);
 
-  const sortedRides: RideTypeWithDistance[] = sortByAndAddDistanceAndFilter({
-    rides,
-    station_code: userInfo.station_code,
-    state,
-    city,
-  });
+  const FilteredRidesAndDistance: RideTypeWithDistance[] =
+    sortByAndAddDistanceAndFilter({
+      rides,
+      station_code: userInfo.station_code,
+      state,
+      city,
+    });
 
-  const filteredRidesAsc: RideType[] = filterByDate({
-    rides: sortedRides,
+  const filteredRidesDateAsc: RideTypeWithDistance[] = filterByDate({
+    rides: FilteredRidesAndDistance,
     filter: 'ASC',
   });
 
-  const filteredRidesDesc: RideType[] = filterByDate({
-    rides: sortedRides,
+  const filteredRidesDateDesc: RideTypeWithDistance[] = filterByDate({
+    rides: FilteredRidesAndDistance,
     filter: 'DESC',
   });
+
+  const sortedRides =
+    route === 'NEAREST'
+      ? FilteredRidesAndDistance
+      : route === 'UPCOMING'
+      ? filteredRidesDateAsc
+      : filteredRidesDateDesc;
 
   useEffect(() => {
     const { states, cities }: { states: string[]; cities: string[] } =
@@ -548,8 +562,10 @@ const Home: NextPage = () => {
       </Head>
       <Layout>
         <Nav
-          upcomingRidesNo={filteredRidesAsc.length}
-          pastRidesNo={filteredRidesDesc.length}
+          route={route}
+          setRoute={setRoute}
+          upcomingRidesNo={filteredRidesDateAsc.length}
+          pastRidesNo={filteredRidesDateDesc.length}
           state={state}
           setState={setState}
           city={city}

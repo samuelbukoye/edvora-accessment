@@ -19,4 +19,8 @@ export interface UserType {
   url: string;
 }
 
-export type setStringStateType = React.Dispatch<React.SetStateAction<string>>;
+export type SetStringStateType = React.Dispatch<React.SetStateAction<string>>;
+
+export type RouteType = 'NEAREST' | 'UPCOMING' | 'PAST';
+
+export type SetRouteStateType = React.Dispatch<React.SetStateAction<RouteType>>;
