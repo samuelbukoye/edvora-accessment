@@ -44,7 +44,7 @@ export default RideCard;
 const Wrapper = styled.div`
   height: ${pxTovw(198)};
   padding: ${pxTovw(22)} ${pxTovw(20)} ${pxTovw(22)} ${pxTovw(29)};
-  border-radius: ${pxTovw(1)};
+  border-radius: ${pxTovw(10)};
   background: var(--bg-tertiary);
 
   display: flex;
