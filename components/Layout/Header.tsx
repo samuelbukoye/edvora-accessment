@@ -1,15 +1,16 @@
-import { useState } from 'react';
 import styled from 'styled-components';
+import { placeholderDataUri } from '../../utils/data';
+import { UserType } from '../../utils/types';
 
-const Header = () => {
-  const [name, setName] = useState('Dhruv Singh');
-  const [imgUrl, setImgUrl] = useState('https://picsum.photos/200');
-
+const Header = ({ userInfo }: { userInfo: UserType }) => {
   return (
     <Wrapper>
       <Logo>Edvora</Logo>
-      <UserName>{name}</UserName>
-      <UserImage src={imgUrl} alt="proile Image" />
+      <UserName>{userInfo.name ? userInfo.name : 'anonymous'}</UserName>
+      <UserImage
+        src={userInfo.url ? userInfo.url : placeholderDataUri}
+        alt="proile Image"
+      />
     </Wrapper>
   );
 };

@@ -23,8 +23,8 @@ const sortByAndAddDistanceAndFilter = ({
   newRides.sort((first, second) => first.distance - second.distance);
 
   const filteredRides = newRides.filter((ride) => {
-    const filterByState: boolean = state ? ride.state === state : !state;
-    const filterByCity = city ? ride.city === city : !city;
+    const filterByState: boolean = state ? ride.state === state : true;
+    const filterByCity = city ? ride.city === city : true;
 
     return filterByState && filterByCity;
   });

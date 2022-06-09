@@ -1,12 +1,19 @@
 import styled from 'styled-components';
+import { UserType } from '../../utils/types';
 import GlobalStyle from './Global';
 import Header from './Header';
 
-const Layout = ({ children }: { children: any }) => {
+const Layout = ({
+  userInfo,
+  children,
+}: {
+  userInfo: UserType;
+  children: any;
+}) => {
   return (
     <>
       <GlobalStyle />
-      <Header />
+      <Header userInfo={userInfo} />
       <Main>{children}</Main>
     </>
   );
