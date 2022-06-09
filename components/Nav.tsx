@@ -205,6 +205,7 @@ const NavItem = styled.li<{ active: boolean }>`
   font-weight: 700;
   line-height: ${pxTovw(22)};
   padding: ${pxTovw(6)} 0;
+  cursor: ${({ active }) => (active ? 'default' : 'pointer')};
 
   color: ${(prop) =>
     prop.active ? 'var(--color-primary)' : 'var(--color-tertiary)'};
