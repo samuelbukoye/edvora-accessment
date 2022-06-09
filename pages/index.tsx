@@ -7,6 +7,7 @@ import Nav from '../components/Nav';
 import RideCard from '../components/RideCard';
 import filterByDate from '../utils/filterByDate';
 import getStateAndCity from '../utils/getStateAndCity';
+import pxTovw from '../utils/pxTovw';
 import sortByAndAddDistanceAndFilter from '../utils/sortByAndAddDistanceAndFilter';
 import {
   RideType,
@@ -101,13 +102,13 @@ export default Home;
 const RidesWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
+  gap: ${pxTovw(13)};
 `;
 
 const NoRidesText = styled.h2`
-  font-size: 2rem;
-  margin-top: 2rem;
-  letter-spacing: 2px;
+  font-size: ${pxTovw(20)};
+  margin-top: ${pxTovw(20)};
+  letter-spacing: ${pxTovw(2)};
   text-transform: uppercase;
   text-align: center;
 `;

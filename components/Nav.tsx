@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import pxTovw from '../utils/pxTovw';
 import {
   RouteType,
   SetRouteStateType,
@@ -148,35 +149,36 @@ const Nav = ({
 export default Nav;
 
 const Wrapper = styled.nav`
-  height: 8.1rem;
+  height: ${pxTovw(81)};
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: ${pxTovw(20)};
 `;
 
 const NavItems = styled.ul`
   display: flex;
   align-items: center;
-  gap: 4.4rem;
+  gap: ${pxTovw(44)};
 `;
 
 const NavItem = styled.li<{ active: boolean }>`
-  font-size: 1.8rem;
+  font-size: ${pxTovw(18)};
   font-weight: 700;
-  line-height: 2.2rem;
-  padding: 0.6rem 0;
+  line-height: ${pxTovw(22)};
+  padding: ${pxTovw(6)} 0;
 
   color: ${(prop) =>
     prop.active ? 'var(--color-primary)' : 'var(--color-tertiary)'};
-  border-bottom: ${(prop) => (prop.active ? '2px solid currentColor' : 'none')};
+  border-bottom: ${pxTovw(2)} solid
+    ${(prop) => (prop.active ? 'currentColor' : 'transparent')};
 
   transition: all 0.5s;
 
   &:hover {
     color: ${(prop) => (prop.active ? 'currentColor' : 'var(--color-primary)')};
-    border-bottom: 2px solid
+    border-bottom: ${pxTovw(2)} solid
       ${(prop) => (prop.active ? 'currentColor' : 'var(--color-primary)')};
   }
 `;
@@ -187,27 +189,27 @@ const FilterDiv = styled.div`
 
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: ${pxTovw(8)};
 `;
 
 const FilterIcon = styled.img`
   display: block;
-  width: 1.8rem;
-  height: 1.2rem;
+  width: ${pxTovw(18)};
+  height: ${pxTovw(12)};
 `;
 
 const FilterText = styled.p`
   color: #f2f2f2;
 
-  font-size: 1.6em;
+  font-size: ${pxTovw(16)};
   font-weight: 500;
-  line-height: 1.9em;
+  line-height: ${pxTovw(19)};
 `;
 
 const FilterDropdown = styled.div`
-  padding: 2.3rem 3rem;
+  padding: ${pxTovw(23)} ${pxTovw(30)};
   background: #131313;
-  border-radius: 1.5rem;
+  border-radius: ${pxTovw(15)};
   cursor: auto;
 
   position: absolute;
@@ -216,37 +218,37 @@ const FilterDropdown = styled.div`
 `;
 
 const FilterHeader = styled.div`
-  padding-bottom: 1.2rem;
-  padding-left: 0.5rem;
-  border-bottom: 1px solid #cbcbcb;
+  padding-bottom: ${pxTovw(12)};
+  padding-left: ${pxTovw(5)};
+  border-bottom: ${pxTovw(1)} solid #cbcbcb;
   width: 95%;
   margin: 0 auto;
 `;
 
 const FilterHeaderText = styled.h3`
-  font-size: 2rem;
+  font-size: ${pxTovw(20)};
   font-weight: 300;
-  line-height: 2.4rem;
+  line-height: ${pxTovw(24)};
   color: #a5a5a5;
 `;
 
 const FilterBody = styled.div`
-  padding-top: 2rem;
+  padding-top: ${pxTovw(20)};
   display: grid;
-  grid-gap: 1.25rem;
+  grid-gap: ${pxTovw(12.5)};
 `;
 
 const FilterBodyCard = styled.div`
   position: relative;
-  width: 16.845rem;
-  padding: 0.8rem 1.2rem;
+  width: ${pxTovw(168.45)};
+  padding: ${pxTovw(8)} ${pxTovw(12)};
   background: #232323;
-  border-radius: 0.5rem;
+  border-radius: ${pxTovw(5)};
   cursor: pointer;
 
-  font-size: 1.7rem;
+  font-size: ${pxTovw(17)};
   font-weight: 400;
-  line-height: 2rem;
+  line-height: ${pxTovw(20)};
 
   display: flex;
   align-items: center;
@@ -256,13 +258,13 @@ const FilterBodyCard = styled.div`
 const FilterBodyCardText = styled.p``;
 
 const FilterBodyCardArrow = styled.div<{ active: boolean }>`
-  flex-basis: 1.219rem;
+  flex-basis: ${pxTovw(12.19)};
   flex-grow: 0;
   width: 0;
   height: 0;
-  border: calc(1.219rem / 2) solid transparent;
+  border: calc(${pxTovw(12.19)} / 2) solid transparent;
   border-bottom: 0;
-  border-top: 1.219rem solid #a5a5a5;
+  border-top: ${pxTovw(12.19)} solid #a5a5a5;
   transition: all 0.5s;
 
   transform: rotate(${(prop) => (prop.active ? '180deg' : '0deg')});
@@ -271,7 +273,7 @@ const FilterBodyCardArrow = styled.div<{ active: boolean }>`
 const SelectDropdown = styled.div`
   position: absolute;
   /* width: 100%; */
-  /* height: 10rem; */
+  /* height: 10)}; */
   left: 0;
   right: 0;
   bottom: 0;
@@ -279,19 +281,19 @@ const SelectDropdown = styled.div`
   background: #232323;
 
   transform: translateY(100%);
-  border: 1px solid #171717;
+  border: ${pxTovw(1)} solid #171717;
 `;
 
 const DropdownCard = styled.div`
   position: relative;
   width: 100%;
-  padding: 0.8rem 1.2rem;
+  padding: ${pxTovw(8)} ${pxTovw(12)};
   background: #232323;
-  border-top: 1px solid #171717;
+  border-top: ${pxTovw(1)} solid #171717;
 
-  font-size: 1.7rem;
+  font-size: ${pxTovw(17)};
   font-weight: 400;
-  line-height: 2rem;
+  line-height: ${pxTovw(20)};
 
   display: flex;
   align-items: center;

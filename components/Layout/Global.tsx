@@ -1,17 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
+import pxTovw from '../../utils/pxTovw';
 
 const GlobalStyle = createGlobalStyle`
 :root {
   --color-primary: #ffffff;
-  --color-secondary:#cfcfcf;
-  --color-tertiary:#d0cbcb;
+  --color-secondary: #cfcfcf;
+  --color-tertiary: #d0cbcb;
 
 
-  --bg-primary:#292929;
-  --bg-secondary:#101010;
-  --bg-tertiary:#171717;
+  --bg-primary: #292929;
+  --bg-secondary: #101010;
+  --bg-tertiary: #171717;
 
-  --font-primary:1.8rem;
+  --font-primary: ${pxTovw(1.8)};
 }
 
 *,

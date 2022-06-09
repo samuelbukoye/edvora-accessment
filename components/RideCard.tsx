@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import pxTovw from '../utils/pxTovw';
 import { RideTypeWithDistance } from '../utils/types';
 
 const RideCard = ({ rideInfo }: { rideInfo: RideTypeWithDistance }) => {
@@ -41,19 +42,19 @@ const RideCard = ({ rideInfo }: { rideInfo: RideTypeWithDistance }) => {
 export default RideCard;
 
 const Wrapper = styled.div`
-  height: 19.8rem;
-  padding: 2.2rem 2rem 2.2rem 2.9rem;
-  border-radius: 1rem;
+  height: ${pxTovw(198)};
+  padding: ${pxTovw(22)} ${pxTovw(20)} ${pxTovw(22)} ${pxTovw(29)};
+  border-radius: ${pxTovw(1)};
   background: var(--bg-tertiary);
 
   display: flex;
   align-items: stretch;
-  gap: 4.4rem;
+  gap: ${pxTovw(44)};
 `;
 
 const MapImg = styled.img`
   display: block;
-  flex-basis: 29.6rem;
+  flex-basis: ${pxTovw(296)};
 `;
 
 const RideInfoItems = styled.ul`
@@ -63,12 +64,12 @@ const RideInfoItems = styled.ul`
 `;
 
 const RideInfoItem = styled.li`
-  font-size: 1.8rem;
-  line-height: 2.2rem;
+  font-size: ${pxTovw(18)};
+  line-height: ${pxTovw(22)};
 
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: ${pxTovw(4)};
 `;
 
 const RideInfoItemKey = styled.span`
@@ -84,21 +85,21 @@ const RideLocationWrapper = styled.div`
   margin-left: auto;
 
   display: flex;
-  gap: 2.4rem;
+  gap: ${pxTovw(24)};
 
-  font-size: 1.2rem;
+  font-size: ${pxTovw(12)};
   font-weight: 500;
-  line-height: 1.5rem;
+  line-height: ${pxTovw(15)};
 `;
 
 const RideCitySpan = styled.span`
   background: #0000008f;
-  border-radius: 1.6rem;
-  padding: 0.4rem 1rem;
+  border-radius: ${pxTovw(16)};
+  padding: ${pxTovw(4)} ${pxTovw(10)};
 `;
 
 const RideStateSpan = styled.span`
   background: #0000008f;
-  border-radius: 1.6rem;
-  padding: 0.4rem 1rem;
+  border-radius: ${pxTovw(16)};
+  padding: ${pxTovw(4)} ${pxTovw(10)};
 `;

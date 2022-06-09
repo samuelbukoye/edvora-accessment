@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import pxTovw from '../../utils/pxTovw';
 import { UserType } from '../../utils/types';
 import GlobalStyle from './Global';
 import Header from './Header';
@@ -22,5 +23,5 @@ const Layout = ({
 export default Layout;
 
 const Main = styled.main`
-  padding: 2.9rem 4.3rem;
+  padding: ${pxTovw(29)} ${pxTovw(43)};
 `;
