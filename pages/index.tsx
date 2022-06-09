@@ -103,6 +103,10 @@ const RidesWrapper = styled.section`
   display: flex;
   flex-direction: column;
   gap: ${pxTovw(13)};
+
+  @media screen and (max-width: 600px) {
+    gap: ${pxTovw(13, true)};
+  }
 `;
 
 const NoRidesText = styled.h2`
@@ -111,6 +115,12 @@ const NoRidesText = styled.h2`
   letter-spacing: ${pxTovw(2)};
   text-transform: uppercase;
   text-align: center;
+
+  @media screen and (max-width: 600px) {
+    font-size: ${pxTovw(20, true)};
+    margin-top: ${pxTovw(20, true)};
+    letter-spacing: ${pxTovw(2, true)};
+  }
 `;
 
 export async function getStaticProps() {

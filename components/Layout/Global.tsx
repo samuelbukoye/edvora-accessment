@@ -13,6 +13,10 @@ const GlobalStyle = createGlobalStyle`
   --bg-tertiary: #171717;
 
   --font-primary: ${pxTovw(1.8)};
+
+  @media screen and (max-width: 600px) {
+    --font-primary: ${pxTovw(1.8, true)};
+  }
 }
 
 *,

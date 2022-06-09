@@ -24,4 +24,8 @@ export default Layout;
 
 const Main = styled.main`
   padding: ${pxTovw(29)} ${pxTovw(43)};
+
+  @media screen and (max-width: 600px) {
+    padding: ${pxTovw(29, true)} ${pxTovw(43, true)};
+  }
 `;

@@ -183,12 +183,21 @@ const Wrapper = styled.nav`
   align-items: center;
   justify-content: space-between;
   gap: ${pxTovw(20)};
+
+  @media screen and (max-width: 600px) {
+    height: ${pxTovw(81, true)};
+    gap: ${pxTovw(20, true)};
+  }
 `;
 
 const NavItems = styled.ul`
   display: flex;
   align-items: center;
   gap: ${pxTovw(44)};
+
+  @media screen and (max-width: 600px) {
+    gap: ${pxTovw(44, true)};
+  }
 `;
 
 const NavItem = styled.li<{ active: boolean }>`
@@ -209,6 +218,18 @@ const NavItem = styled.li<{ active: boolean }>`
     border-bottom: ${pxTovw(2)} solid
       ${(prop) => (prop.active ? 'currentColor' : 'var(--color-primary)')};
   }
+
+  @media screen and (max-width: 600px) {
+    font-size: ${pxTovw(18, true)};
+    line-height: ${pxTovw(22, true)};
+    padding: ${pxTovw(6, true)} 0;
+    border-bottom: ${pxTovw(2, true)} solid
+      ${(prop) => (prop.active ? 'currentColor' : 'transparent')};
+    &:hover {
+      border-bottom: ${pxTovw(2, true)} solid
+        ${(prop) => (prop.active ? 'currentColor' : 'var(--color-primary)')};
+    }
+  }
 `;
 
 const FilterDiv = styled.div`
@@ -218,12 +239,21 @@ const FilterDiv = styled.div`
   display: flex;
   align-items: center;
   gap: ${pxTovw(8)};
+
+  @media screen and (max-width: 600px) {
+    gap: ${pxTovw(8, true)};
+  }
 `;
 
 const FilterIcon = styled.img`
   display: block;
   width: ${pxTovw(18)};
   height: ${pxTovw(12)};
+
+  @media screen and (max-width: 600px) {
+    width: ${pxTovw(18, true)};
+    height: ${pxTovw(12, true)};
+  }
 `;
 
 const FilterText = styled.p`
@@ -232,6 +262,11 @@ const FilterText = styled.p`
   font-size: ${pxTovw(16)};
   font-weight: 500;
   line-height: ${pxTovw(19)};
+
+  @media screen and (max-width: 600px) {
+    font-size: ${pxTovw(16, true)};
+    line-height: ${pxTovw(19, true)};
+  }
 `;
 
 const FilterDropdown = styled.div`
@@ -243,6 +278,11 @@ const FilterDropdown = styled.div`
   position: absolute;
   top: 90%;
   right: 50%;
+
+  @media screen and (max-width: 600px) {
+    padding: ${pxTovw(23, true)} ${pxTovw(30, true)};
+    border-radius: ${pxTovw(15, true)};
+  }
 `;
 
 const FilterHeader = styled.div`
@@ -251,6 +291,12 @@ const FilterHeader = styled.div`
   border-bottom: ${pxTovw(1)} solid #cbcbcb;
   width: 95%;
   margin: 0 auto;
+
+  @media screen and (max-width: 600px) {
+    padding-bottom: ${pxTovw(12, true)};
+    padding-left: ${pxTovw(5, true)};
+    border-bottom: ${pxTovw(1, true)} solid #cbcbcb;
+  }
 `;
 
 const FilterHeaderText = styled.h3`
@@ -258,12 +304,22 @@ const FilterHeaderText = styled.h3`
   font-weight: 300;
   line-height: ${pxTovw(24)};
   color: #a5a5a5;
+
+  @media screen and (max-width: 600px) {
+    font-size: ${pxTovw(20, true)};
+    line-height: ${pxTovw(24, true)};
+  }
 `;
 
 const FilterBody = styled.div`
   padding-top: ${pxTovw(20)};
   display: grid;
   grid-gap: ${pxTovw(12.5)};
+
+  @media screen and (max-width: 600px) {
+    padding-top: ${pxTovw(20, true)};
+    grid-gap: ${pxTovw(12.5, true)};
+  }
 `;
 
 const FilterBodyCard = styled.div`
@@ -277,12 +333,23 @@ const FilterBodyCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 600px) {
+    width: ${pxTovw(168.45, true)};
+    padding: ${pxTovw(8)} ${pxTovw(12, true)};
+    border-radius: ${pxTovw(5, true)};
+  }
 `;
 
 const FilterBodyCardText = styled.p`
   font-size: ${pxTovw(17)};
   font-weight: 400;
   line-height: ${pxTovw(20)};
+
+  @media screen and (max-width: 600px) {
+    font-size: ${pxTovw(17, true)};
+    line-height: ${pxTovw(20, true)};
+  }
 `;
 
 const FilterBodyCardArrow = styled.div<{ active: boolean }>`
@@ -296,6 +363,12 @@ const FilterBodyCardArrow = styled.div<{ active: boolean }>`
   transition: all 0.5s;
 
   transform: rotate(${(prop) => (prop.active ? '180deg' : '0deg')});
+
+  @media screen and (max-width: 600px) {
+    flex-basis: ${pxTovw(12.19, true)};
+    border: calc(${pxTovw(12.19, true)} / 2) solid transparent;
+    border-top: ${pxTovw(12.19, true)} solid #a5a5a5;
+  }
 `;
 
 const SelectDropdown = styled.div`
@@ -310,6 +383,10 @@ const SelectDropdown = styled.div`
 
   transform: translateY(100%);
   border: ${pxTovw(1)} solid #171717;
+
+  @media screen and (max-width: 600px) {
+    border: ${pxTovw(1, true)} solid #171717;
+  }
 `;
 
 const HiddenSelectElement = styled.select`
@@ -330,6 +407,11 @@ const DropdownCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 600px) {
+    padding: ${pxTovw(8, true)} ${pxTovw(12, true)};
+    border-top: ${pxTovw(1, true)} solid #171717;
+  }
 `;
 
 const DropdownValue = styled.p`
@@ -337,4 +419,9 @@ const DropdownValue = styled.p`
   font-weight: 400;
   line-height: ${pxTovw(20)};
   text-align: center;
+
+  @media screen and (max-width: 600px) {
+    font-size: ${pxTovw(17, true)};
+    line-height: ${pxTovw(20, true)};
+  }
 `;

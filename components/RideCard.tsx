@@ -50,11 +50,23 @@ const Wrapper = styled.div`
   display: flex;
   align-items: stretch;
   gap: ${pxTovw(44)};
+
+  @media screen and (max-width: 600px) {
+    height: ${pxTovw(198, true)};
+    padding: ${pxTovw(22, true)} ${pxTovw(20, true)} ${pxTovw(22, true)}
+      ${pxTovw(29, true)};
+    border-radius: ${pxTovw(10, true)};
+    gap: ${pxTovw(44, true)};
+  }
 `;
 
 const MapImg = styled.img`
   display: block;
   flex-basis: ${pxTovw(296)};
+
+  @media screen and (max-width: 600px) {
+    flex-basis: ${pxTovw(296, true)};
+  }
 `;
 
 const RideInfoItems = styled.ul`
@@ -70,6 +82,15 @@ const RideInfoItem = styled.li`
   display: flex;
   align-items: center;
   gap: ${pxTovw(4)};
+
+  @media screen and (max-width: 600px) {
+    font-size: ${pxTovw(18, true)};
+    line-height: ${pxTovw(22, true)};
+
+    display: flex;
+    align-items: center;
+    gap: ${pxTovw(4, true)};
+  }
 `;
 
 const RideInfoItemKey = styled.span`
@@ -83,23 +104,40 @@ const RideInfoItemValue = styled.span`
 const RideLocationWrapper = styled.div`
   align-self: flex-start;
   margin-left: auto;
+  font-size: ${pxTovw(12)};
+  font-weight: 500;
+  line-height: ${pxTovw(15)};
 
   display: flex;
   gap: ${pxTovw(24)};
 
-  font-size: ${pxTovw(12)};
-  font-weight: 500;
-  line-height: ${pxTovw(15)};
+  @media screen and (max-width: 600px) {
+    font-size: ${pxTovw(12, true)};
+    line-height: ${pxTovw(15, true)};
+
+    gap: ${pxTovw(24, true)};
+  }
 `;
 
 const RideCitySpan = styled.span`
   background: #0000008f;
+  text-align: center;
   border-radius: ${pxTovw(16)};
   padding: ${pxTovw(4)} ${pxTovw(10)};
+
+  @media screen and (max-width: 600px) {
+    border-radius: ${pxTovw(16, true)};
+    padding: ${pxTovw(4, true)} ${pxTovw(10, true)};
+  }
 `;
 
 const RideStateSpan = styled.span`
   background: #0000008f;
   border-radius: ${pxTovw(16)};
   padding: ${pxTovw(4)} ${pxTovw(10)};
+
+  @media screen and (max-width: 600px) {
+    border-radius: ${pxTovw(16, true)};
+    padding: ${pxTovw(4, true)} ${pxTovw(10, true)};
+  }
 `;
