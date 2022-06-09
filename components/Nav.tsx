@@ -22,6 +22,7 @@ const Nav = ({
   states: string[];
 }) => {
   const FilterIconUrl = '/img/filter-icon.png';
+  const [DisplayFilter, setDisplayFilter] = useState(false);
   const [DisplayStates, setDisplayStates] = useState(false);
   const [DisplayCities, setDisplayCities] = useState(false);
 
@@ -43,64 +44,75 @@ const Nav = ({
         <NavItem active={false}>Upcoming rides ({upcomingRidesNo})</NavItem>
         <NavItem active={false}>Past rides ({pastRidesNo})</NavItem>
       </NavItems>
-      <FilterDiv>
+      <FilterDiv
+        onMouseOver={() => setDisplayFilter(true)}
+        onMouseOut={() => setDisplayFilter(false)}
+      >
         <FilterIcon src={FilterIconUrl} alt="filter-icon" />
         <FilterText>Filters</FilterText>
 
-        <FilterDropdown>
-          <FilterHeader>
-            <FilterHeaderText>Filters</FilterHeaderText>
-          </FilterHeader>
-          <FilterBody>
-            <FilterBodyCard onClick={() => setDisplayStates(!DisplayStates)}>
-              <FilterBodyCardText>{state ? state : 'State'}</FilterBodyCardText>
-              <FilterBodyCardArrow active={DisplayStates}></FilterBodyCardArrow>
-              {DisplayStates && (
-                <SelectDropdown
-                  onClick={(e) => e.stopPropagation()}
-                  style={{ zIndex: '20' }}
-                >
-                  <DropdownCard onClick={() => handleStateChange('')}>
-                    <DropdownValue>State</DropdownValue>
-                  </DropdownCard>
+        {DisplayFilter && (
+          <FilterDropdown>
+            <FilterHeader>
+              <FilterHeaderText>Filters</FilterHeaderText>
+            </FilterHeader>
+            <FilterBody>
+              <FilterBodyCard onClick={() => setDisplayStates(!DisplayStates)}>
+                <FilterBodyCardText>
+                  {state ? state : 'State'}
+                </FilterBodyCardText>
+                <FilterBodyCardArrow
+                  active={DisplayStates}
+                ></FilterBodyCardArrow>
+                {DisplayStates && (
+                  <SelectDropdown
+                    onClick={(e) => e.stopPropagation()}
+                    style={{ zIndex: '20' }}
+                  >
+                    <DropdownCard onClick={() => handleStateChange('')}>
+                      <DropdownValue>State</DropdownValue>
+                    </DropdownCard>
 
-                  {states.length > 0 &&
-                    states.map((state) => (
-                      <DropdownCard
-                        key={state}
-                        onClick={() => handleStateChange(state)}
-                      >
-                        <DropdownValue>{state}</DropdownValue>
-                      </DropdownCard>
-                    ))}
-                </SelectDropdown>
-              )}
-            </FilterBodyCard>
-            <FilterBodyCard onClick={() => setDisplayCities(!DisplayCities)}>
-              <FilterBodyCardText>{city ? city : 'City'}</FilterBodyCardText>
-              <FilterBodyCardArrow active={DisplayCities}></FilterBodyCardArrow>
-              {DisplayCities && (
-                <SelectDropdown
-                  onClick={(e) => e.stopPropagation()}
-                  style={{ zIndex: '10' }}
-                >
-                  <DropdownCard onClick={() => handleCityChange('')}>
-                    <DropdownValue>City</DropdownValue>
-                  </DropdownCard>
-                  {cities.length > 0 &&
-                    cities.map((city) => (
-                      <DropdownCard
-                        key={city}
-                        onClick={() => handleCityChange(city)}
-                      >
-                        <DropdownValue>{city}</DropdownValue>
-                      </DropdownCard>
-                    ))}
-                </SelectDropdown>
-              )}
-            </FilterBodyCard>
-          </FilterBody>
-        </FilterDropdown>
+                    {states.length > 0 &&
+                      states.map((state) => (
+                        <DropdownCard
+                          key={state}
+                          onClick={() => handleStateChange(state)}
+                        >
+                          <DropdownValue>{state}</DropdownValue>
+                        </DropdownCard>
+                      ))}
+                  </SelectDropdown>
+                )}
+              </FilterBodyCard>
+              <FilterBodyCard onClick={() => setDisplayCities(!DisplayCities)}>
+                <FilterBodyCardText>{city ? city : 'City'}</FilterBodyCardText>
+                <FilterBodyCardArrow
+                  active={DisplayCities}
+                ></FilterBodyCardArrow>
+                {DisplayCities && (
+                  <SelectDropdown
+                    onClick={(e) => e.stopPropagation()}
+                    style={{ zIndex: '10' }}
+                  >
+                    <DropdownCard onClick={() => handleCityChange('')}>
+                      <DropdownValue>City</DropdownValue>
+                    </DropdownCard>
+                    {cities.length > 0 &&
+                      cities.map((city) => (
+                        <DropdownCard
+                          key={city}
+                          onClick={() => handleCityChange(city)}
+                        >
+                          <DropdownValue>{city}</DropdownValue>
+                        </DropdownCard>
+                      ))}
+                  </SelectDropdown>
+                )}
+              </FilterBodyCard>
+            </FilterBody>
+          </FilterDropdown>
+        )}
       </FilterDiv>
     </Wrapper>
   );
@@ -144,6 +156,7 @@ const NavItem = styled.li<{ active: boolean }>`
 
 const FilterDiv = styled.div`
   position: relative;
+  cursor: pointer;
 
   display: flex;
   align-items: center;
@@ -168,6 +181,7 @@ const FilterDropdown = styled.div`
   padding: 2.3rem 3rem;
   background: #131313;
   border-radius: 1.5rem;
+  cursor: auto;
 
   position: absolute;
   top: 90%;
@@ -201,6 +215,7 @@ const FilterBodyCard = styled.div`
   padding: 0.8rem 1.2rem;
   background: #232323;
   border-radius: 0.5rem;
+  cursor: pointer;
 
   font-size: 1.7rem;
   font-weight: 400;
